@@ -60,9 +60,14 @@ frontend/
 ├── src/
 │   ├── assets/
 │   ├── components/         // Reusable UI components (Button, Card, Modal, FormInput, Header, Layout, LoadingSpinner)
+│   │   └── doctor/         // Doctor-specific components (DoctorAppointmentsTable, DoctorStatsCards, RescheduleAppointmentModal, StyledRescheduleButton)
 │   ├── data/               // Mock data (mockData.js)
-│   ├── pages/              // Main application pages (Login, Registration, Dashboards, Details, Management)
+│   ├── pages/              // Main application pages
+│   │   ├── admin/          // Admin-specific pages (AdminDashboard, AdminLoginPage, AdminRegistrationPage, HospitalDetailsPage, HospitalProfileManagement, DoctorManagement)
+│   │   ├── doctor/         // Doctor-specific pages (DoctorAppointmentsPage, DoctorAvailabilityPage, DoctorDashboard, DoctorLoginPage, DoctorNotificationsPage, DoctorProfilePage, DoctorRegistrationPage)
+│   │   └── patient/        // Patient-specific pages (PatientAppointmentsPage, PatientDashboard, PatientLoginPage, PatientRegistrationPage)
 │   ├── styles/             // Global styles and theme configurations (GlobalStyles.js)
+│   ├── utils/              // Utility functions
 │   ├── App.jsx             // Main application component, routing, context providers
 │   ├── index.css           // Basic CSS resets
 │   ├── main.jsx            // Entry point for React app
