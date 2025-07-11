@@ -6,7 +6,7 @@ import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import Modal from '../components/Modal';
 import LoadingSpinner from '../components/LoadingSpinner';
-import mockData from '../data/mockData';
+import { mockData } from '../data/mockData';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { toast } from 'react-toastify';

@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import LoadingSpinner from '../components/LoadingSpinner';
-import mockData from '../data/mockData';
+import { mockData } from '../data/mockData';
 import { FaHospital, FaMapMarkerAlt, FaPhone, FaUserMd, FaBriefcaseMedical, FaEdit, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 

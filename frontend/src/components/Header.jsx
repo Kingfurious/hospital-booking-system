@@ -63,12 +63,21 @@ const Header = () => {
   const handleLogout = () => {
     logout();
     toast.info('Logged out successfully!');
-    navigate('/login/patient');
+    // Redirect based on user role or to a generic login page
+    if (user.role === 'doctor') {
+      navigate('/doctor/login');
+    } else if (user.role === 'patient') {
+      navigate('/login/patient');
+    } else if (user.role === 'admin') {
+      navigate('/login/admin');
+    } else {
+      navigate('/'); // Fallback
+    }
   };
 
   return (
     <HeaderContainer>
-      <Logo to={user ? (user.role === 'patient' ? '/patient/dashboard' : '/admin/dashboard') : '/'}>
+      <Logo to={user ? (user.role === 'patient' ? '/patient/dashboard' : user.role === 'admin' ? '/admin/dashboard' : '/doctor/dashboard') : '/'}>
         Hospital Booking
       </Logo>
       <NavLinks>
@@ -83,6 +92,19 @@ const Header = () => {
             <NavLink to="/admin/dashboard">Dashboard</NavLink>
             <NavLink to="/admin/hospital-profile">Hospital Profile</NavLink>
             <NavLink to="/admin/doctor-management">Doctor Management</NavLink>
+          </>
+        )}
+        {user && user.role === 'doctor' && (
+          <>
+            <NavLink to="/doctor/dashboard">Dashboard</NavLink>
+            <NavLink to="/doctor/appointments">Appointments</NavLink>
+            <NavLink to="/doctor/profile">Profile</NavLink>
+            {/* Dummy notifications badge */}
+            <div className="relative">
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full px-1">2</span>
+              <NavLink to="/doctor/notifications">🔔</NavLink>
+            </div>
+            <span className="text-gray-600 text-sm">Dr. {user.fullName ? user.fullName.split(' ')[1] : 'Doctor'}</span>
           </>
         )}
         <IconButton onClick={toggleTheme}>

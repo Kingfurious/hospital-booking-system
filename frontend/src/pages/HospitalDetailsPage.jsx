@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import LoadingSpinner from '../components/LoadingSpinner';
-import mockData from '../data/mockData';
+import { mockData } from '../data/mockData';
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaUserMd, FaBriefcaseMedical } from 'react-icons/fa';
 
 const DetailsContainer = styled.div`

@@ -132,6 +132,9 @@ const AdminLoginPage = () => {
         <SwitchRoleText>
           Are you a patient? <StyledLink to="/login/patient">Login as Patient</StyledLink>
         </SwitchRoleText>
+        <SwitchRoleText>
+          Are you a doctor? <StyledLink to="/doctor/login">Login as Doctor</StyledLink>
+        </SwitchRoleText>
       </FormCard>
     </PageContainer>
   );

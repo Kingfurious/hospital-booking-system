@@ -13,11 +13,19 @@ import AdminRegistrationPage from './pages/AdminRegistrationPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import PatientDashboard from './pages/PatientDashboard';
 import HospitalDetailsPage from './pages/HospitalDetailsPage';
-import DoctorProfilePage from './pages/DoctorProfilePage';
 import PatientAppointmentsPage from './pages/PatientAppointmentsPage';
 import AdminDashboard from './pages/AdminDashboard';
 import HospitalProfileManagement from './pages/HospitalProfileManagement';
 import DoctorManagement from './pages/DoctorManagement';
+import DoctorLoginPage from './pages/DoctorLoginPage';
+import DoctorRegistrationPage from './pages/DoctorRegistrationPage';
+import DoctorDashboard from './pages/DoctorDashboard';
+import DoctorProfilePage from './pages/DoctorProfilePage';
+import DoctorAvailabilityPage from './pages/DoctorAvailabilityPage';
+import DoctorAppointmentsPage from './pages/DoctorAppointmentsPage';
+import DoctorNotificationsPage from './pages/DoctorNotificationsPage';
+import ErrorPage from './pages/ErrorPage';
+import LoadingPage from './pages/LoadingPage';
 
 // Contexts
 const AuthContext = createContext(null);
@@ -67,13 +75,26 @@ const ThemeProviderWrapper = ({ children }) => {
 // Protected Route Component
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true); // Simulate loading
+
+  useEffect(() => {
+    // Simulate async auth check
+    const checkAuth = setTimeout(() => {
+      setLoading(false);
+    }, 500); // Adjust loading time as needed
+    return () => clearTimeout(checkAuth);
+  }, []);
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   if (!user) {
     return <Navigate to="/login/patient" replace />;
   }
 
   if (allowedRoles && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/" replace />; // Redirect to a general access page or unauthorized page
+    return <Navigate to="/error" replace state={{ code: 403, message: 'Access Denied', description: 'You do not have permission to view this page.' }} />;
   }
 
   return children;
@@ -86,6 +107,9 @@ function App() {
         <ThemeProviderWrapper>
           <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
           <Routes>
+            {/* Root Route - Redirect to Patient Login */}
+            <Route path="/" element={<Navigate to="/login/patient" replace />} />
+            
             {/* Authentication Routes */}
             <Route path="/login/patient" element={<PatientLoginPage />} />
             <Route path="/login/admin" element={<AdminLoginPage />} />
@@ -104,8 +128,17 @@ function App() {
             <Route path="/admin/hospital-profile" element={<ProtectedRoute allowedRoles={['admin']}><HospitalProfileManagement /></ProtectedRoute>} />
             <Route path="/admin/doctor-management" element={<ProtectedRoute allowedRoles={['admin']}><DoctorManagement /></ProtectedRoute>} />
 
-            {/* Default Redirect */}
-            <Route path="/" element={<Navigate to="/login/patient" />} />
+            {/* Doctor Routes */}
+            <Route path="/doctor/login" element={<DoctorLoginPage />} />
+            <Route path="/doctor/register" element={<DoctorRegistrationPage />} />
+            <Route path="/doctor/dashboard" element={<ProtectedRoute allowedRoles={['doctor']}><DoctorDashboard /></ProtectedRoute>} />
+            <Route path="/doctor/profile" element={<ProtectedRoute allowedRoles={['doctor']}><DoctorProfilePage /></ProtectedRoute>} />
+            <Route path="/doctor/availability" element={<ProtectedRoute allowedRoles={['doctor']}><DoctorAvailabilityPage /></ProtectedRoute>} />
+            <Route path="/doctor/appointments" element={<ProtectedRoute allowedRoles={['doctor']}><DoctorAppointmentsPage /></ProtectedRoute>} />
+            <Route path="/doctor/notifications" element={<ProtectedRoute allowedRoles={['doctor']}><DoctorNotificationsPage /></ProtectedRoute>} />
+
+            {/* Error Page */}
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </ThemeProviderWrapper>
       </AuthProvider>

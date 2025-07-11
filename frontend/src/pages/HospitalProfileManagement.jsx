@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import FormInput from '../components/FormInput';
 import Button from '../components/Button';
 import LoadingSpinner from '../components/LoadingSpinner';
-import mockData from '../data/mockData';
+import { mockData } from '../data/mockData';
 import { toast } from 'react-toastify';
 import { FaUpload } from 'react-icons/fa';
 
