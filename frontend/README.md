@@ -25,6 +25,13 @@ This project implements the frontend user interface for a hospital booking manag
 - **UI Elements**: Cards for listings, calendar component, tooltips/badges for availability, loading states.
 
 ### Additional Features (Enhancements)
+
+### Doctor UI
+- **Dashboard**: Overview of appointments, patient reviews, and quick stats.
+- **Appointment Management**: View, confirm, reschedule, or cancel appointments.
+- **Availability Management**: Set and update working hours and leave days using a calendar.
+- **Notifications**: Receive alerts for new appointments, cancellations, or messages.
+- **Profile Management**: Update personal details, specialization, and contact information.
 - **Dark Mode**: Toggle between light and dark themes.
 - **Notifications**: UI placeholder for in-app notifications (using `react-toastify`).
 - **Favorites**: (UI placeholder)
@@ -180,6 +187,42 @@ Due to the text-based nature of this interaction, direct screenshots cannot be p
         -   Shows selected date and time.
         -   "Confirm Booking" button.
     -   Booking Confirmation Modal: Appears after booking, showing appointment details and a "Got It!" button.
+
+5.  **Doctor Dashboard (`DoctorDashboard.jsx`)**:
+   -   Header with "Hospital Booking" logo and doctor navigation links ("Dashboard", "Appointments", "Availability", "Notifications", "Profile", Theme Toggle, Logout).
+   -   Main title: "Doctor Dashboard".
+   -   "Welcome, Dr. [Doctor Name]!" message.
+   -   Summary cards for "Total Appointments", "Upcoming Appointments", "Patients Today", "Pending Reschedules".
+   -   A section for "Recent Appointments" (a simplified table or list).
+   -   A section for "Patient Reviews" (if implemented).
+
+6.  **Doctor Appointments Page (`DoctorAppointmentsPage.jsx`)**:
+   -   Header as above.
+   -   Title: "My Appointments".
+   -   Filter options (e.g., "Upcoming", "Past", "Pending Reschedule").
+   -   A responsive table listing appointments with columns for Patient Name, Date, Time, Status, and Actions (Confirm, Reschedule, Cancel, View Details).
+   -   Reschedule Appointment Modal: Appears when rescheduling, allowing selection of new date/time.
+
+7.  **Doctor Availability Page (`DoctorAvailabilityPage.jsx`)**:
+   -   Header as above.
+   -   Title: "Manage Availability".
+   -   `react-calendar` component for date selection.
+   -   Options to set "Working Hours" for selected days (e.g., input fields for start/end times, add/remove timeslots).
+   -   Toggle to mark a day as "On Leave".
+   -   "Save Availability" button.
+
+8.  **Doctor Notifications Page (`DoctorNotificationsPage.jsx`)**:
+   -   Header as above.
+   -   Title: "Notifications".
+   -   A list of notification items (e.g., "New appointment booked by [Patient Name] on [Date] at [Time]", "Appointment with [Patient Name] cancelled").
+   -   Option to mark notifications as read or clear all.
+
+9.  **Doctor Profile Page (`DoctorProfilePage.jsx`)**:
+   -   Header as above.
+   -   Title: "My Profile".
+   -   Form card with input fields for Doctor Name, Specialization, Years of Experience, Contact Number, Email.
+   -   "Update Profile" button.
+   -   (Optional) Section to upload/change profile picture.
 
 5.  **Admin Dashboard (`AdminDashboard.jsx`)**:
     -   Header with "Hospital Booking" logo and admin navigation links ("Dashboard", "Hospital Profile", "Doctor Management", Theme Toggle, Logout).
